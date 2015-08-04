@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.Iterator;
 
 public class Main {
-    private static final String OAK_DEFAULT_DIRECTORY = "C:/oak_dir";
+    private static final String OAK_DEFAULT_DIRECTORY = "C:/jcr_dir";
 
     public static void main(String[] args)  {
         Repository repository = new TransientRepository(getRepositoryDir());
