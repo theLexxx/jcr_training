@@ -4,7 +4,6 @@ import org.apache.jackrabbit.core.TransientRepository;
 
 import javax.jcr.*;
 import java.io.File;
-import java.util.Iterator;
 
 public class Main {
 
