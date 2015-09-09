@@ -24,7 +24,8 @@
                 <configuration>
                     <instructions>
                         <Operation-Bundle>true</Operation-Bundle>
-                        <Opertaion-Runk>1</Opertaion-Runk>
+                        <Operation-Symbol>+</Operation-Symbol>
+                        <Operation-Rank>1</Operation-Rank>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>com.training.bundles.plus</Export-Package>
                         <Import-Package>com.training.bundles.calculate.ifaces</Import-Package>

@@ -23,6 +23,9 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+                        <Operation-Bundle>true</Operation-Bundle>
+                        <Operation-Symbol>*</Operation-Symbol>
+                        <Operation-Rank>2</Operation-Rank>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>com.training.bundles.multiple</Export-Package>
                         <Import-Package>com.training.bundles.calculate.ifaces</Import-Package>
