@@ -18,7 +18,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.training.calulate</groupId>
+            <groupId>com.training.control</groupId>
             <artifactId>calculate-osgi</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -27,6 +27,7 @@
     <modules>
         <module>plus</module>
         <module>minus</module>
+        <module>multiple</module>
     </modules>
 
 </project>

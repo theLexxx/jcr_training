@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>plus-osgi</artifactId>
+    <artifactId>multiple-osgi</artifactId>
     <name>${project.artifactId} bundle</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
@@ -23,12 +23,10 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Operation-Bundle>true</Operation-Bundle>
-                        <Opertaion-Runk>1</Opertaion-Runk>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                        <Export-Package>com.training.bundles.plus</Export-Package>
+                        <Export-Package>com.training.bundles.multiple</Export-Package>
                         <Import-Package>com.training.bundles.calculate.ifaces</Import-Package>
-                        <Private-Package>com.training.bundles.plus.impl</Private-Package>
+                        <Private-Package>com.training.bundles.multiple.impl</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>
