@@ -3,14 +3,16 @@ package com.training.bundles.registrar.bean;
 import org.apache.commons.lang3.StringUtils;
 import org.osgi.framework.Bundle;
 
-public class OperationBean {
+import java.util.Comparator;
+
+public class OperationBean implements Comparator<OperationBean> {
     private final String operationSymbol;
     private final int operationRank;
     private final Bundle opeartionBundle;
 
-    public OperationBean(String operationSymbol, int operationRank, Bundle opeartionBundle) throws IllegalArgumentException{
+    public OperationBean(String operationSymbol, int operationRank, Bundle opeartionBundle) throws IllegalArgumentException {
 
-        if (StringUtils.isBlank(operationSymbol)){
+        if (StringUtils.isBlank(operationSymbol)) {
             throw new IllegalArgumentException("operationSymbol can not be empty");
         }
         if (operationRank <= 0) {
@@ -35,5 +37,25 @@ public class OperationBean {
 
     public Bundle getOpeartionBundle() {
         return opeartionBundle;
+    }
+
+    @Override
+    public int compare(OperationBean o1, OperationBean o2) {
+        return ((Long) (o1.getOpeartionBundle().getBundleId())).compareTo(o2.getOpeartionBundle().getBundleId());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof OperationBean) {
+            Long objBundleId = ((OperationBean) obj).getOpeartionBundle().getBundleId();
+            return objBundleId.equals(opeartionBundle.getBundleId());
+        } else {
+            return super.equals(obj);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return ((Long) (this.opeartionBundle.getBundleId())).hashCode();
     }
 }

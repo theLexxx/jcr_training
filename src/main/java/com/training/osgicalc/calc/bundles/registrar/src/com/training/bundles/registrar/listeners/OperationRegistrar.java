@@ -27,7 +27,7 @@ public class OperationRegistrar implements BundleListener {
             operationSymbol = operationSymbol.trim();
         }
 
-        String operationRankStr = StringUtils.EMPTY;
+        String operationRankStr;
         int operationRank = 0;
         if (bundleHeaders.get(META_OPERATION_RANK) != null) {
             operationRankStr = (String) bundleHeaders.get(META_OPERATION_RANK);
