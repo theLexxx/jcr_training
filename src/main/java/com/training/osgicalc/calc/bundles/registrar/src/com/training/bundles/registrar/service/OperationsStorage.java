@@ -4,9 +4,11 @@ import com.training.bundles.registrar.bean.OperationBean;
 
 import java.util.*;
 
-public class OperationsStrorage {
-
+public class OperationsStorage {
     static private Map<String, Set<OperationBean>> storage = new HashMap<String, Set<OperationBean>>();
+
+    private OperationsStorage() {
+    }
 
     static public OperationBean addOperation(OperationBean operationBean) {
         String operationSymbol = operationBean.getOperationSymbol();
@@ -20,6 +22,8 @@ public class OperationsStrorage {
             operationMap.add(operationBean);
             storage.put(operationSymbol, operationMap);
         }
+
+        System.out.println("Operation \"" + operationSymbol + "\" was registered.");
 
         return operationBean;
     }
@@ -46,6 +50,10 @@ public class OperationsStrorage {
                     storage.remove(operationSymbol);
                 }
             }
+        }
+
+        if (isSuccess) {
+            System.out.println("Operation \"" + operationSymbol + "\" was registered.");
         }
 
         return isSuccess;

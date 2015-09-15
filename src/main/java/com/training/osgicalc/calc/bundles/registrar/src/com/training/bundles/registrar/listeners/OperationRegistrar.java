@@ -1,7 +1,9 @@
 package com.training.bundles.registrar.listeners;
 
 import com.training.bundles.registrar.bean.OperationBean;
+import com.training.bundles.registrar.service.OperationsStorage;
 import org.apache.commons.lang3.StringUtils;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.BundleListener;
 
@@ -14,7 +16,32 @@ public class OperationRegistrar implements BundleListener {
 
     @Override
     public void bundleChanged(BundleEvent bundleEvent) {
-        Dictionary bundleHeaders = bundleEvent.getBundle().getHeaders();
+        OperationBean operationBean = createOperationBean(bundleEvent.getBundle());
+
+        if (operationBean != null) {
+            try {
+                switch (bundleEvent.getType()) {
+                    case BundleEvent.STARTED:
+                        OperationsStorage.addOperation(operationBean);
+                        break;
+                    case BundleEvent.STOPPING:
+                    case BundleEvent.STOPPED:
+                    case BundleEvent.UNINSTALLED:
+                    case BundleEvent.STARTING:
+                        OperationsStorage.removeOperation(operationBean);
+                        break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+    }
+
+    public static OperationBean createOperationBean(Bundle bundle) {
+        OperationBean operationBean = null;
+
+        Dictionary bundleHeaders = bundle.getHeaders();
 
         boolean isOperation = false;
         if (bundleHeaders.get(META_IS_OPERATIONS) != null) {
@@ -23,7 +50,7 @@ public class OperationRegistrar implements BundleListener {
 
         String operationSymbol = StringUtils.EMPTY;
         if (bundleHeaders.get(META_OPERATION_SYMBOL) != null) {
-            operationSymbol = (String) bundleHeaders.get(META_IS_OPERATIONS);
+            operationSymbol = (String) bundleHeaders.get(META_OPERATION_SYMBOL);
             operationSymbol = operationSymbol.trim();
         }
 
@@ -32,18 +59,14 @@ public class OperationRegistrar implements BundleListener {
         if (bundleHeaders.get(META_OPERATION_RANK) != null) {
             operationRankStr = (String) bundleHeaders.get(META_OPERATION_RANK);
             operationRankStr = operationRankStr.trim();
-            operationRank = Integer.getInteger(operationRankStr);
+            operationRank = Integer.parseInt(operationRankStr);
         }
+
 
         if (isOperation) {
-            try {
-                OperationBean operationBean = new OperationBean(operationSymbol, operationRank, bundleEvent.getBundle());
-                //TODO registrar operation
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-
+            operationBean = new OperationBean(operationSymbol, operationRank, bundle);
         }
 
+        return operationBean;
     }
 }

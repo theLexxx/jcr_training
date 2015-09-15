@@ -24,8 +24,7 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
-                        <Export-Package>com.training.bundles.registrar</Export-Package>
-                        <Private-Package>com.training.bundles.registrar.impl</Private-Package>
+                        <Export-Package>com.training.bundles.registrar.service</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>
