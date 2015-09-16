@@ -26,7 +26,7 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>com.training.bundles.calculate,
                                         com.training.bundles.calculate.ifaces</Export-Package>
-                        <Private-Package>com.training.bundles.registrar.impl</Private-Package>
+                        <Private-Package>com.training.bundles.registrar.service</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>

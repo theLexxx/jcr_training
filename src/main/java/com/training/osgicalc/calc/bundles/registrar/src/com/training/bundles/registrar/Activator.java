@@ -18,11 +18,13 @@ public class Activator implements BundleActivator {
         operationRegistrar = new OperationRegistrar();
         bundleContext.addBundleListener(operationRegistrar);
 
-        OperationBean operationBean = null;
+        OperationBean operationBean;
         for (Bundle bundle: bundleContext.getBundles()) {
-            operationBean = OperationRegistrar.createOperationBean(bundle);
-            if (operationBean != null) {
-                OperationsStorage.addOperation(operationBean);
+            if (bundle.getState() == Bundle.ACTIVE) {
+                operationBean = OperationRegistrar.createOperationBean(bundle);
+                if (operationBean != null) {
+                    OperationsStorage.addOperation(operationBean);
+                }
             }
         }
 

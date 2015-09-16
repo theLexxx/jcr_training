@@ -23,7 +23,7 @@ public class OperationsStorage {
             storage.put(operationSymbol, operationMap);
         }
 
-        System.out.println("Operation \"" + operationSymbol + "\" was registered.");
+        System.out.println("STORAGE: Operation \"" + operationSymbol + "\" was registered.");
 
         return operationBean;
     }
@@ -53,7 +53,9 @@ public class OperationsStorage {
         }
 
         if (isSuccess) {
-            System.out.println("Operation \"" + operationSymbol + "\" was registered.");
+            System.out.println("STORAGE: Operation \"" + operationSymbol + "\" was unregistered.");
+        } else {
+            System.out.println("STORAGE WARNING: Operation \"" + operationSymbol + "\" was NOT unregistered.");
         }
 
         return isSuccess;
