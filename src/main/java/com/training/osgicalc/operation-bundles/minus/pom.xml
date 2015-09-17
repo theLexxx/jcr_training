@@ -29,7 +29,6 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>com.training.bundles.minus</Export-Package>
                         <Import-Package>com.training.bundles.calculate.ifaces</Import-Package>
-                        <Private-Package>com.training.bundles.minus.impl</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>
