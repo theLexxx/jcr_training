@@ -66,6 +66,7 @@
     <modules>
         <module>control-bundles</module>
         <module>operation-bundles</module>
+        <module>UI</module>
     </modules>
 
 </project>
