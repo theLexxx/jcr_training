@@ -28,6 +28,11 @@ public class OperationsStorage {
         return operationBean;
     }
 
+    /**
+     *
+     * @param operationSymbol;
+     * @return operation bean or null (if operation not found)
+     */
     static public OperationBean getOperation(String operationSymbol) {
         OperationBean result = null;
 

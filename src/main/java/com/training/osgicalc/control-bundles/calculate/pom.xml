@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>calculate-osgi</artifactId>
+    <artifactId>calculate</artifactId>
     <name>${project.artifactId} bundle</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
@@ -26,11 +26,19 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>com.training.bundles.calculate,
                                         com.training.bundles.calculate.ifaces</Export-Package>
-                        <Private-Package>com.training.bundles.registrar.service</Private-Package>
+                        <Import-Package>com.training.bundles.registrar.service</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.training.control</groupId>
+            <artifactId>registrar</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

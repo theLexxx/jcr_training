@@ -64,8 +64,8 @@
     </dependencies>
 
     <modules>
-        <module>calc/bundles</module>
-        <module>operations/bubdles</module>
+        <module>control-bundles</module>
+        <module>operation-bundles</module>
     </modules>
 
 </project>
