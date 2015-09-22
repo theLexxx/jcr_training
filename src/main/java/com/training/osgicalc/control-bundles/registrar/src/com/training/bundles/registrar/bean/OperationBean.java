@@ -7,10 +7,15 @@ import java.util.Comparator;
 
 public class OperationBean implements Comparator<OperationBean> {
     private final String operationSymbol;
-    private final int operationRank;
-    private final Bundle opeartionBundle;
+    private final String operationClassPath;
 
-    public OperationBean(String operationSymbol, int operationRank, Bundle opeartionBundle) throws IllegalArgumentException {
+    private final int operationRank;
+    private final Bundle operationBundle;
+
+    public OperationBean(String operationSymbol,
+                         int operationRank,
+                         String operationClassPath,
+                         Bundle operationBundle) throws IllegalArgumentException {
 
         if (StringUtils.isBlank(operationSymbol)) {
             throw new IllegalArgumentException("operationSymbol can not be empty");
@@ -18,13 +23,18 @@ public class OperationBean implements Comparator<OperationBean> {
         if (operationRank <= 0) {
             throw new IllegalArgumentException("operationRank can be more that 0");
         }
-        if (opeartionBundle == null) {
-            throw new IllegalArgumentException("operationRank can not \"null\"");
+        if (StringUtils.isBlank(operationClassPath)) {
+            throw new IllegalArgumentException("operationClassPath can not be \"null\"");
         }
 
+        if (operationBundle == null) {
+            throw new IllegalArgumentException("operationRank can not be \"null\"");
+        }
+
+        this.operationClassPath = operationClassPath;
         this.operationSymbol = operationSymbol.trim();
         this.operationRank = operationRank;
-        this.opeartionBundle = opeartionBundle;
+        this.operationBundle = operationBundle;
     }
 
     public String getOperationSymbol() {
@@ -35,20 +45,24 @@ public class OperationBean implements Comparator<OperationBean> {
         return operationRank;
     }
 
-    public Bundle getOpeartionBundle() {
-        return opeartionBundle;
+    public Bundle getOperationBundle() {
+        return operationBundle;
+    }
+
+    public String getOperationClassPath() {
+        return operationClassPath;
     }
 
     @Override
     public int compare(OperationBean o1, OperationBean o2) {
-        return ((Long) (o1.getOpeartionBundle().getBundleId())).compareTo(o2.getOpeartionBundle().getBundleId());
+        return ((Long) (o1.getOperationBundle().getBundleId())).compareTo(o2.getOperationBundle().getBundleId());
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof OperationBean) {
-            Long objBundleId = ((OperationBean) obj).getOpeartionBundle().getBundleId();
-            return objBundleId.equals(opeartionBundle.getBundleId());
+            Long objBundleId = ((OperationBean) obj).getOperationBundle().getBundleId();
+            return objBundleId.equals(operationBundle.getBundleId());
         } else {
             return super.equals(obj);
         }
@@ -56,6 +70,6 @@ public class OperationBean implements Comparator<OperationBean> {
 
     @Override
     public int hashCode() {
-        return ((Long) (this.opeartionBundle.getBundleId())).hashCode();
+        return ((Long) (this.operationBundle.getBundleId())).hashCode();
     }
 }

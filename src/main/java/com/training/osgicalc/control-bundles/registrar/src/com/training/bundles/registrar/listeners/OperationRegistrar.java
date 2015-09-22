@@ -13,6 +13,7 @@ public class OperationRegistrar implements BundleListener {
     public static final String META_IS_OPERATIONS = "Operation-Bundle";
     public static final String META_OPERATION_SYMBOL = "Operation-Symbol";
     public static final String META_OPERATION_RANK = "Operation-Rank";
+    public static final String META_OPERATION_CLASSPATH = "Operation-Classpath";
 
     @Override
     public void bundleChanged(BundleEvent bundleEvent) {
@@ -48,23 +49,28 @@ public class OperationRegistrar implements BundleListener {
             isOperation = "true".equals(bundleHeaders.get(META_IS_OPERATIONS));
         }
 
-        String operationSymbol = StringUtils.EMPTY;
-        if (bundleHeaders.get(META_OPERATION_SYMBOL) != null) {
-            operationSymbol = (String) bundleHeaders.get(META_OPERATION_SYMBOL);
-            operationSymbol = operationSymbol.trim();
-        }
-
-        String operationRankStr;
-        int operationRank = 0;
-        if (bundleHeaders.get(META_OPERATION_RANK) != null) {
-            operationRankStr = (String) bundleHeaders.get(META_OPERATION_RANK);
-            operationRankStr = operationRankStr.trim();
-            operationRank = Integer.parseInt(operationRankStr);
-        }
-
-
         if (isOperation) {
-            operationBean = new OperationBean(operationSymbol, operationRank, bundle);
+            String operationSymbol = StringUtils.EMPTY;
+            if (bundleHeaders.get(META_OPERATION_SYMBOL) != null) {
+                operationSymbol = (String) bundleHeaders.get(META_OPERATION_SYMBOL);
+                operationSymbol = operationSymbol.trim();
+            }
+
+            String operationRankStr;
+            int operationRank = 0;
+            if (bundleHeaders.get(META_OPERATION_RANK) != null) {
+                operationRankStr = (String) bundleHeaders.get(META_OPERATION_RANK);
+                operationRankStr = operationRankStr.trim();
+                operationRank = Integer.parseInt(operationRankStr);
+            }
+
+            String operationClassPath = StringUtils.EMPTY;
+            if (bundleHeaders.get(META_OPERATION_CLASSPATH) != null) {
+                operationClassPath = (String) bundleHeaders.get(META_OPERATION_CLASSPATH);
+                operationClassPath = operationClassPath.trim();
+            }
+
+            operationBean = new OperationBean(operationSymbol, operationRank, operationClassPath, bundle);
         }
 
         return operationBean;

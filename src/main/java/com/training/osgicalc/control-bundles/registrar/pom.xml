@@ -25,7 +25,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
                         <Export-Package>com.training.bundles.registrar.service,
-                            com.training.bundles.registrar.bean</Export-Package>
+                                        com.training.bundles.registrar.bean</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>

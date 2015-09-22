@@ -26,6 +26,7 @@
                         <Operation-Bundle>true</Operation-Bundle>
                         <Operation-Symbol>+</Operation-Symbol>
                         <Operation-Rank>1</Operation-Rank>
+                        <Operation-Classpath>com.training.bundles.plus.Operation</Operation-Classpath>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>com.training.bundles.plus</Export-Package>
                         <Import-Package>com.training.bundles.calculate.ifaces</Import-Package>

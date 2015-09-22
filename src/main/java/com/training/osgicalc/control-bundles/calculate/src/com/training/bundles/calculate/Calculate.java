@@ -1,5 +1,6 @@
 package com.training.bundles.calculate;
 
+import com.training.bundles.calculate.ifaces.IOperation;
 import com.training.bundles.calculate.utils.OperationHelper;
 import com.training.bundles.calculate.utils.ReversePolishNotationParser;
 import com.training.bundles.registrar.bean.OperationBean;
@@ -38,9 +39,23 @@ public class Calculate {
         }
 
         Bundle operationBundle;
-        operationBundle = operationBean.getOpeartionBundle();
+        operationBundle = operationBean.getOperationBundle();
 
-        return null;
+        Double result = null;
+
+        try {
+            Double[] args = {operand1, operand2};
+            IOperation operation = ((IOperation<Double>) (operationBundle.loadClass(operationBean.getOperationClassPath()).newInstance()));
+            result = (Double) operation.execute(args);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
 }
