@@ -1,9 +1,13 @@
 package com.training.bundles.registrar.service;
 
 import com.training.bundles.registrar.bean.OperationBean;
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Service;
 
 import java.util.*;
 
+@Component (immediate = true)
+@Service
 public class OperationsStorage {
     static private Map<String, Set<OperationBean>> storage = new HashMap<String, Set<OperationBean>>();
 
